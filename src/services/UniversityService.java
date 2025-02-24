@@ -30,6 +30,18 @@ public class UniversityService {
                 .filter(c -> c.getStudents().stream().anyMatch(s -> s.getId() == id))
                 .collect(Collectors.toList());
     }
+    public Optional<Classroom> findClassByName(String name) {
+        return university.getClasses().stream()
+                .filter(c -> c.getName().equalsIgnoreCase(name))
+                .findFirst();
+    }
+
+    public Optional<Teacher> findTeacherByName(String name) {
+        return university.getTeachers().stream()
+                .filter(t -> t.getName().equalsIgnoreCase(name))
+                .findFirst();
+    }
+
     public void listTeachers() {
         university.getTeachers().forEach(System.out::println);
     }
